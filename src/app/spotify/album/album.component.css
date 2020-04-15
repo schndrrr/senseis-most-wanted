@@ -1,0 +1,11 @@
+.albums {
+    height: 100px;
+    width: 100px;
+    background-color: aqua;
+    text-align: center;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+}

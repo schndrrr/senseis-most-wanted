@@ -1,0 +1,4 @@
+<h2> {{ playlist.name }}</h2>
+<div *ngFor="let track of trackList">
+  <img *ngIf="track.track.album.images[0] != undefined" [src]="track.track.album.images[0].url" style="width: 30px; height: 30px;">  {{ track.track.name }}
+</div>

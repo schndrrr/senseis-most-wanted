@@ -1,0 +1,5 @@
+<p>spotify works!</p>
+<button (click)="test()"> test</button>
+<div *ngIf="playlists != undefined">
+    <app-album *ngFor="let list of playlists" [playlist]="list"></app-album>
+</div>
