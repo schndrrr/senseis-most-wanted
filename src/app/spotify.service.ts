@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User, Playlist, Playlists, Tracks, Track } from './classes';
+import { User, Playlist, Playlists, Tracks, Track, Recent } from './classes';
 
 
 @Injectable({
@@ -26,7 +26,7 @@ export class SpotifyService {
 
   public authorize(){
     window.location.href = this.authUrl + '?client_id=' + this.clientId
-    + '&response_type=token&scopes=playlist-read-private%20user-read-email%20user-read-private&redirect_uri=http://localhost:4200/home';
+    + '&response_type=token&redirect_uri=http://localhost:4200/home&scope=playlist-read-private%20user-read-email%20user-read-private%20user-read-recently-played';
   }
 
   public getPlaylists(userId: string): Observable<Playlists>{
@@ -52,7 +52,16 @@ export class SpotifyService {
       map((res: Tracks) => {
         return res;
       })
-    )
+    );
+    return obs;
+  }
+
+  public getRecentlyPlayedSongs(): Observable<Recent> {
+    const obs = this.http.get(this.currentUserUrl + '/player/recently-played', { headers: {'Authorization': 'Bearer ' + this.authToken}}).pipe(
+      map((res: Recent) => {
+        return res;
+      })
+    );
     return obs;
   }
 }

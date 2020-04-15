@@ -30,12 +30,16 @@ export class SpotifyComponent implements OnInit {
       map(fragment => new URLSearchParams(fragment)),
       map((params) => {
         this.accessToken = params.get('access_token');
-        this.spotifyService.authToken = this.accessToken;
+        if (this.accessToken != undefined) {
+          this.spotifyService.authToken = this.accessToken;
+        }
+        if (this.spotifyService.authToken == undefined) {
+          this.spotifyService.authorize();
+        }
       })
     ).subscribe();
-    // this.accessToken = new URLSearchParams(window.location.search).get('token_type');
-    console.log(this.accessToken);
-    if (this.accessToken != null) {
+
+    if (this.spotifyService.authToken != undefined) {
       this.spotifyService.getCurrentUser().subscribe(u => {
         this.user = u;
         this.spotifyService.getPlaylists(u.id).subscribe(playlists => {
@@ -44,10 +48,4 @@ export class SpotifyComponent implements OnInit {
       });
     }
   }
-
-  test() {
-    this.clicked = true;
-    this.spotifyService.authorize();
-  }
-
 }

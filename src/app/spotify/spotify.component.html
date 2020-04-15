@@ -1,5 +1,5 @@
-<div style="background-color: rgb(27, 27, 27);">
-    <button (click)="test()"> test</button>
+<app-navbar></app-navbar>
+<div style="background-color: rgb(27, 27, 27); margin-top: 75px;">
     <ng-container *ngIf="playlists != undefined">
         <div class="cards">
             <app-album *ngFor="let list of playlists" [playlist]="list" ></app-album>

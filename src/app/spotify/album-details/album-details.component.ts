@@ -14,6 +14,7 @@ export class AlbumDetailsComponent implements OnInit {
 
   trackList: PlaylistEntry[];
   trackId: string;
+  url: string;
 
   mouse: boolean = false;
 
@@ -33,4 +34,7 @@ export class AlbumDetailsComponent implements OnInit {
     this.mouse = m;
   }
 
+  openSpotify(){
+    window.open(this.playlist.external_urls.spotify, "_blank");
+  }
 }

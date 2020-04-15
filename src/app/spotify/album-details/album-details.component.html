@@ -1,4 +1,5 @@
-<h2> {{ playlist.name }}</h2>
+<span style="margin-bottom: 0; font-size: 3rem;"> {{ playlist.name }}</span>
+  <mat-icon style="float: right;" (click)="openSpotify()"> speaker </mat-icon>
   <cdk-virtual-scroll-viewport [itemSize]="trackList?.length" class="scroll">
     <ng-container *cdkVirtualFor="let track of trackList">
       <div (mouseenter)="mouseEv(true, track.track.id)" (mouseleave)="mouseEv(false)">

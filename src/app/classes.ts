@@ -115,3 +115,28 @@ export class Album {
     type: string;
     uri: string;
 }
+
+export class Recent {
+    cursors: {
+        after: number;
+        before: number;
+    }
+    href: string;
+    items: RecentTracks[];
+    limit: number;
+    next: string;
+}
+
+export class RecentTracks {
+    context: {
+        external_urls: {
+            spotify: string;
+        };
+        href: string;
+        type: string;
+        uri: string;
+    }
+    played_at: string;
+    track: Track;
+
+}

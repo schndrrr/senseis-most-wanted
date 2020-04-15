@@ -20,6 +20,8 @@ import { AlbumDetailsComponent } from './spotify/album-details/album-details.com
 import { HttpClientModule } from '@angular/common/http';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -32,6 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AlbumDetailsComponent,
     MainMenuComponent,
     NavbarComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FlexLayoutModule,
     MatCardModule,
     ScrollingModule,
+    MatIconModule,
     
   ],
   providers: [SpotifyService],
