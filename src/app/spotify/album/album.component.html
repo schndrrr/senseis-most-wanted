@@ -1,6 +1,11 @@
-<div (click)="openTrackDialog()" class="albums">
+<mat-card (click)="openTrackDialog()" class="albums">
+    <mat-card-header style="text-align: left;">
+        <mat-card-title>
+            {{ playlist.name }}
+        </mat-card-title>
+        <mat-card-subtitle>
+            from {{ playlist.owner.display_name }}
+        </mat-card-subtitle>
+    </mat-card-header>
     <img [src]="playlist.images[0].url" class="img">
-    <p>
-        {{ playlist.name }}
-    </p>
-</div>
+</mat-card>

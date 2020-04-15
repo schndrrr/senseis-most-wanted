@@ -13,6 +13,9 @@ export class AlbumDetailsComponent implements OnInit {
   @Input() playlist: Playlist;
 
   trackList: PlaylistEntry[];
+  trackId: string;
+
+  mouse: boolean = false;
 
   constructor(
     private spotifyService: SpotifyService,
@@ -23,6 +26,11 @@ export class AlbumDetailsComponent implements OnInit {
     this.spotifyService.getPlaylistTracks(this.playlist.id).subscribe(res => {
       this.trackList = res.items;
     });
+  }
+
+  mouseEv(m: boolean, id?: string){
+    this.trackId = id;
+    this.mouse = m;
   }
 
 }

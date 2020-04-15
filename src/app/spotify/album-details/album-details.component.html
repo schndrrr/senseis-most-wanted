@@ -1,4 +1,14 @@
 <h2> {{ playlist.name }}</h2>
-<div *ngFor="let track of trackList">
-  <img *ngIf="track.track.album.images[0] != undefined" [src]="track.track.album.images[0].url" style="width: 30px; height: 30px;">  {{ track.track.name }}
-</div>
+  <cdk-virtual-scroll-viewport [itemSize]="trackList?.length" class="scroll">
+    <ng-container *cdkVirtualFor="let track of trackList">
+      <div (mouseenter)="mouseEv(true, track.track.id)" (mouseleave)="mouseEv(false)">
+        <img *ngIf="track.track.album.images[0] != undefined" [src]="track.track.album.images[0].url" style="width: 30px; height: 30px;">
+        {{ track.track.name }}
+        <div *ngIf="mouse && track.track.id == trackId">
+          <ng-container *ngFor="let artist of track.track.artists">
+            <small style="color: grey;"> {{artist.name}} </small>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
