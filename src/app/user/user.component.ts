@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../spotify.service';
 import { RecentTracks } from '../classes';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user',
@@ -13,7 +14,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private spotifyService: SpotifyService,
-
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SpotifyComponent } from './spotify/spotify.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { UserComponent } from './user/user.component';
+import { BackgroundComponent } from './background/background.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
     component: MainMenuComponent
   },
   {
-    path: 'home',
+    path: 'spotify',
     pathMatch: 'full',
     component: SpotifyComponent
   },
@@ -25,6 +26,26 @@ const routes: Routes = [
     path: 'me',
     pathMatch: 'full',
     component: UserComponent
+  },
+  {
+    path: 'home',
+    component: BackgroundComponent,
+    children: [
+      {
+        path: '',
+        component: BackgroundComponent
+      },
+      {
+        path: 'spotify',
+        pathMatch: 'full',
+        component: SpotifyComponent
+      },
+      {
+        path: 'me',
+        pathMatch: 'full',
+        component: UserComponent
+      }
+    ]
   }
 ];
 

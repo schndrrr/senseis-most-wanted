@@ -9,7 +9,9 @@
           <ng-container *ngFor="let artist of track.track.artists">
             <small style="color: grey;"> {{artist.name}} </small>
           </ng-container>
+          <iframe [src]="track.track.embeded_url" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
       </div>
     </ng-container>
   </cdk-virtual-scroll-viewport>
+  <iframe src="https://open.spotify.com/embed/playlist/3n6uIOMvb7rzSrAvwonX1R" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>

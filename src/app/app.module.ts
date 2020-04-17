@@ -22,6 +22,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/user.component';
+import { BackgroundComponent } from './background/background.component';
 
 
 
@@ -35,6 +36,7 @@ import { UserComponent } from './user/user.component';
     MainMenuComponent,
     NavbarComponent,
     UserComponent,
+    BackgroundComponent,
   ],
   imports: [
     BrowserModule,

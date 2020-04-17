@@ -13,7 +13,7 @@ import { User, Playlist, PlaylistEntry } from '../classes';
 })
 export class SpotifyComponent implements OnInit {
 
-  accessToken: string = '';
+
   clicked: boolean = false;
   playlists: Playlist[];
   user: User;
@@ -22,28 +22,15 @@ export class SpotifyComponent implements OnInit {
 
   constructor(
     private spotifyService: SpotifyService,
-    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.route.fragment.pipe(
-      map(fragment => new URLSearchParams(fragment)),
-      map((params) => {
-        this.accessToken = params.get('access_token');
-        if (this.accessToken != undefined) {
-          this.spotifyService.authToken = this.accessToken;
-        }
-        if (this.spotifyService.authToken == undefined) {
-          this.spotifyService.authorize();
-        }
-      })
-    ).subscribe();
-
+    console.log('peace');
     if (this.spotifyService.authToken != undefined) {
       this.spotifyService.getCurrentUser().subscribe(u => {
         this.user = u;
         this.spotifyService.getPlaylists(u.id).subscribe(playlists => {
-          this.playlists = playlists.items;
+          this.playlists = playlists.items.filter(m => m.owner.id == this.user.id);
         })
       });
     }

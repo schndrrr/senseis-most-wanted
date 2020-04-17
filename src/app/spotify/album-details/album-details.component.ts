@@ -10,9 +10,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AlbumDetailsComponent implements OnInit {
 
-  @Input() playlist: Playlist;
-
+  @Input() playlist?: Playlist;
+  
   trackList: PlaylistEntry[];
+
   trackId: string;
   url: string;
 

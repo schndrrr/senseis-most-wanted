@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/comm
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User, Playlist, Playlists, Tracks, Track, Recent } from './classes';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Injectable({
@@ -21,6 +22,7 @@ export class SpotifyService {
 
   constructor(
     private http: HttpClient,
+    private sanitizer: DomSanitizer,
 
   ) { }
 
@@ -50,6 +52,9 @@ export class SpotifyService {
   public getPlaylistTracks(playlistId: string): Observable<Tracks> {
     const obs = this.http.get(this.url + 'playlists/' + playlistId + '/tracks', { headers: {'Authorization': 'Bearer ' + this.authToken}}).pipe(
       map((res: Tracks) => {
+        res.items.forEach(element => {
+          element.track.embeded_url = this.sanitizer.bypassSecurityTrustResourceUrl('https://embed.spotify.com/?uri=' + element.track.uri + '&theme=white&view=coverart');
+        });
         return res;
       })
     );
@@ -59,6 +64,9 @@ export class SpotifyService {
   public getRecentlyPlayedSongs(): Observable<Recent> {
     const obs = this.http.get(this.currentUserUrl + '/player/recently-played', { headers: {'Authorization': 'Bearer ' + this.authToken}}).pipe(
       map((res: Recent) => {
+        res.items.forEach(element => {
+          element.track.embeded_url = this.sanitizer.bypassSecurityTrustResourceUrl('https://embed.spotify.com/?uri=' + element.track.uri + '&theme=white&view=coverart');
+        });
         return res;
       })
     );

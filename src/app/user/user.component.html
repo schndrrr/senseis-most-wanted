@@ -1,5 +1,14 @@
-<div>
+<div style="margin-top: 75px; background-color: rgb(36, 36, 36); width: 50%; float: right;">
     <ng-container *ngFor="let track of recentTracks">
-        {{ track.track.name }}
+      <div>
+        <!-- <img *ngIf="track.track.album.images[0] != undefined" [src]="track.track.album.images[0].url" style="width: 30px; height: 30px;">
+        <span >{{ track.track.name }}</span>
+        <div>
+          <audio controls>
+            <source [src]="track.track.preview_url" />
+          </audio>
+        </div> -->
+        <iframe [src]="track.track.embeded_url" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
     </ng-container>
 </div>

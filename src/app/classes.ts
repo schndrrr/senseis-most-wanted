@@ -1,3 +1,5 @@
+import { SafeUrl } from '@angular/platform-browser';
+
 export class User {
     display_name?: string;
     external_urls: { spotify: string };
@@ -84,11 +86,12 @@ export class Track {
     is_local: boolean;
     name: string;
     popularity: number;
-    preview_url: string;
+    preview_url: any;
     track: boolean;
     track_number: number;
     type: string;
     uri: string;
+    embeded_url: SafeUrl;
 }
 
 export class Artist {
